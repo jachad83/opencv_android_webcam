@@ -2,7 +2,7 @@
 
 Capturing frames from an Android webcam and analysing each to recognise a cricket ball.
 
-One of the challenges set by Mars Society University Rover Challenge (http://urc.marssociety.org/) is for a rover to autonomously navgiate between points marked by a tennis ball raised above the ground.
+One of the challenges set by Mars Society University Rover Challenge (http://urc.marssociety.org/) is for a rover to autonomously navigate between points marked by a tennis ball raised above the ground.
 
 ## Version
 * 1.0.0
