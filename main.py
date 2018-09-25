@@ -12,8 +12,9 @@ if os.listdir(directory):
 
 
 # set the camera input
-camera_input = cv2.VideoCapture(1)
-frame_list =[]
+camera_input = cv2.VideoCapture(0)
+frame_list = []
+
 
 def image_analysis(count):
     # iterate through frame captures
@@ -22,30 +23,30 @@ def image_analysis(count):
         input("Press Enter to capture frame.")
         print("{} captured.".format(frame_name))
         return_value, frame = camera_input.read()
-        cv2.imwrite("frames/{}.png".format(frame_name), frame)
+        cv2.imwrite(directory+"/{}.png".format(frame_name), frame)
         frame_list.append("{}.png".format(frame_name))
 
-    # load catured frames in greyscale
+    # load captured frames in greyscale
     for image in frame_list:
-        img = cv2.imread('frames/{}'.format(image), 0)
+        img = cv2.imread(directory+"/{}".format(image), 0)
         plt.imshow(img, cmap='gray', interpolation='bicubic')
         plt.xticks([]), plt.yticks([])
         plt.show()
         circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT,1,20,
                             param1=50,param2=50,minRadius=100,maxRadius=200)
 
-        if circles is not None:
+        if type(circles) is np.ndarray:
+            print(image + " is a ball.")
             circles = np.uint16(np.around(circles))
             cimg = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
-            print(image + " is a ball.")
             for i in circles[0, :]:
                 # draw the outer circle
                 cv2.circle(cimg, (i[0], i[1]), i[2], (0, 255, 0), 2)
                 # draw the center of the circle
                 cv2.circle(cimg, (i[0], i[1]), 2, (0, 0, 255), 3)
             cv2.imshow('detected circles', cimg)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+        else:
+            print(image + " is a NOT ball.")
 
 
 # user sets number of frames to be analysed
