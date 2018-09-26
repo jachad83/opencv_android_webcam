@@ -23,33 +23,32 @@ def image_analysis(count):
         input("Press Enter to capture frame.")
         print("{} captured.".format(frame_name))
         return_value, frame = camera_input.read()
+        # name and write the frames to images
         cv2.imwrite(directory+"/{}.png".format(frame_name), frame)
         frame_list.append("{}.png".format(frame_name))
 
     # load captured frames in greyscale
     for image in frame_list:
+        # use Circle Hough Transform to find circles
         img = cv2.imread(directory+"/{}".format(image), 0)
+        circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 20,
+                                   param1=50, param2=50, minRadius=100, maxRadius=200)
+        # display the images for debugging purposes
         plt.imshow(img, cmap='gray', interpolation='bicubic')
         plt.xticks([]), plt.yticks([])
         plt.show()
-        circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT,1,20,
-                            param1=50,param2=50,minRadius=100,maxRadius=200)
 
+        # select image if a circle is found
         if type(circles) is np.ndarray:
             print(image + " is a ball.")
+            # display the circles for debugging purposes
             circles = np.uint16(np.around(circles))
             cimg = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
             for i in circles[0, :]:
-                # draw the outer circle
                 cv2.circle(cimg, (i[0], i[1]), i[2], (0, 255, 0), 2)
-                # draw the center of the circle
                 cv2.circle(cimg, (i[0], i[1]), 2, (0, 0, 255), 3)
-            cv2.imshow('detected circles', cimg)
         else:
             print(image + " is NOT a ball.")
-        cv2.imshow('image', img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
 
 
 # user sets number of frames to be analysed
