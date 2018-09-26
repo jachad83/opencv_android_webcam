@@ -7,7 +7,7 @@ One of the challenges set by Mars Society University Rover Challenge (http://urc
 ## Version
 * 1.0.0
 * September 2018
-* Analysing a set of images to find one that shows a cricket ball
+* Analysing a set of images captured on an Android webcam to find one that shows a cricket ball
 
 ## Dependencies
 
