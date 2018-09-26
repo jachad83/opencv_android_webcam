@@ -46,7 +46,10 @@ def image_analysis(count):
                 cv2.circle(cimg, (i[0], i[1]), 2, (0, 0, 255), 3)
             cv2.imshow('detected circles', cimg)
         else:
-            print(image + " is a NOT ball.")
+            print(image + " is NOT a ball.")
+        cv2.imshow('image', img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
 
 # user sets number of frames to be analysed
