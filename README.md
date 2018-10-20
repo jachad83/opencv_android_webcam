@@ -13,7 +13,7 @@ One of the challenges set by Mars Society University Rover Challenge (http://urc
 
 ### Python
 * Python 3.6.5
-* OpenCV-python-3.4.3.18
+* OpenCV-python 3.4.3.18
 * NumPy 1.15.2
 * MatPlotLib 3.0.0
 
