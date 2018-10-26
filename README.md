@@ -22,3 +22,7 @@ One of the challenges set by Mars Society University Rover Challenge (http://urc
 
 #### Author
 * James Chadwick, 2018
+
+#### License
+* Mozilla Public License 2.0
+* Keep it free and always give credit where its due!
